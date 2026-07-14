@@ -1,18 +1,22 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { Stack } from "expo-router";
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
-
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+export default function RootLayout() {
+  return( 
+  <Stack>
+    <Stack.Screen name="index" options={
+      {
+        title:"Home",
+        headerBackButtonDisplayMode:"minimal",
+      }} 
+      />
+    <Stack.Screen name="pokemonDetails" options={
+      {
+        title:"Details",
+        headerBackButtonDisplayMode:"minimal",
+        presentation: "formSheet",
+        sheetAllowedDetents: [0.5],
+      }} 
+      />
+  </Stack>
   );
 }
